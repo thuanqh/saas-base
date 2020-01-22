@@ -1,6 +1,5 @@
 {
-  "exclude": ["node_modules"],
-  "files": ["./typings.d.ts"],
+  "exclude": ["node_modules/**", "packages/*/node_modules/**", "**/*.d.ts"],
   "compilerOptions": {
     "jsx": "react",
     "esModuleInterop": true,
