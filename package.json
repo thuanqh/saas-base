@@ -1,10 +1,14 @@
 {
-  "name": "root",
+  "name": "saas-base",
   "private": true,
-  "devDependencies": {
-    "lerna": "^3.20.2"
-  },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "clean": "lerna run clean --stream --parallel",
+    "build": "lerna run build --stream --parallel"
+  },
+  "devDependencies": {
+    "lerna": "^3.20.2"
+  }
 }
