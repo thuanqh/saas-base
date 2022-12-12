@@ -35,6 +35,5 @@
         "linter": "eslint"
       }
     }
-  },
-  "defaultProject": "admin"
+  }
 }
