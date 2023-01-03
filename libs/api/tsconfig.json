@@ -11,7 +11,7 @@
     "types": ["vitest"]
   },
   "files": [],
-  "include": [],
+  "include": ["../auth/src/next-auth.d.ts"],
   "references": [
     {
       "path": "./tsconfig.lib.json"
