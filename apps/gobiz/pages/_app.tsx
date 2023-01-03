@@ -1,13 +1,17 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
 import { ChakraProvider } from "@chakra-ui/react";
+import { SessionProvider } from "next-auth/react";
+import type { Session } from 'next-auth';
+import type { AppType } from 'next/app';
+import { trpc } from "../utils/trpc";
 
-function CustomApp({ Component, pageProps }: AppProps) {
+const CustomApp: AppType<{ session: Session | null }> = ({ Component, pageProps: { session, ...pageProps } }) => {
   return (
-    <ChakraProvider>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <SessionProvider session={session}>
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </SessionProvider>
   );
 }
 
-export default CustomApp;
+export default trpc.withTRPC(CustomApp);
