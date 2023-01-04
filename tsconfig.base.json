@@ -17,6 +17,7 @@
     "paths": {
       "@lungvang/api": ["libs/api/src/index.ts"],
       "@lungvang/auth": ["libs/auth/src/index.ts"],
+      "@lungvang/chakra-templates": ["libs/chakra-templates/src/index.ts"],
       "@lungvang/db": ["libs/db/src/index.ts"]
     }
   },

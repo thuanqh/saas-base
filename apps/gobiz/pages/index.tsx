@@ -1,9 +1,8 @@
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Container, Heading, Stack, Text } from "@chakra-ui/react";
 import { AppRouter } from "@lungvang/api";
 import { inferProcedureOutput } from "@trpc/server";
-import { createBuilder } from "@trpc/server/dist/core/internals/procedureBuilder";
-import { signIn, signOut } from "next-auth/react";
-import { util } from "zod";
+import { CallToActionWithAnnotation, CallToActionWithIllustration } from "@lungvang/chakra-templates";
+import Navbar from "../components/Navbar";
 import { trpc } from "../utils/trpc";
 
 type Post = inferProcedureOutput<AppRouter["post"]["all"]>[number];
@@ -80,35 +79,42 @@ export function Index() {
     }
   )
 
-  const greeting = trpc.auth.hello.useQuery({ text: "Jason" })
-
   return (
-    <Box>
-      <Heading>Welcome Gobiz</Heading>
-      {greeting.data?.greeting && <Heading>{greeting.data.greeting}</Heading>}
-      <Button onClick={() => addPost.mutate({ title: "Post A", content: "Post A Detail" })}>Create Post</Button>
-      <Box>
-        {allPosts.data ? (
+    <>
+      <Navbar />
+      <CallToActionWithAnnotation />
+      <CallToActionWithIllustration />
+      <Container maxW={'3xl'}>
+        <Stack
+          as={Box}
+          textAlign={'center'}
+          spacing={{ base: 8, md: 14 }}
+          py={{ base: 20, md: 36 }}
+        >
+          <Button onClick={() => addPost.mutate({ title: "Post A", content: "Post A Detail" })}>Create Post</Button>
           <Box>
-            {allPosts.data?.map((post: Post) => (
-              <PostItem key={post.id} post={post} />
-            )
+            {allPosts.data ? (
+              <Box>
+                {allPosts.data?.map((post: Post) => (
+                  <PostItem key={post.id} post={post} />
+                )
+                )}
+              </Box>
+            ) : (
+              <Text>Loading...</Text>
             )}
           </Box>
-        ) : (
-          <Text>Loading...</Text>
-        )}
-      </Box>
-      <Box>
-        {session?.user && (
-          <Text>
-            {session && <span>Logged in as {session?.user?.name}</span>}
-            {secretMessage && <span> - {secretMessage}</span>}
-          </Text>
-        )}
-        <Button onClick={session ? () => signOut() : () => signIn()}>{session ? "Sign out" : "Sign in"}</Button>
-      </Box>
-    </Box >
+          <Box>
+            {session?.user && (
+              <Text>
+                {session && <span>Logged in as {session?.user?.name}</span>}
+                {secretMessage && <span> - {secretMessage}</span>}
+              </Text>
+            )}
+          </Box>
+        </Stack>
+      </Container>
+    </ >
   );
 }
 
