@@ -11,6 +11,25 @@ type Post = inferProcedureOutput<AppRouter["post"]["all"]>[number];
 function PostItem({ post }: { post: Post }) {
   const utils = trpc.useContext();
 
+
+  const editPost = trpc.post.update.useMutation({
+    async onMutate({ id, data }) {
+      await utils.post.all.cancel();
+      const allPosts = utils.post.all.getData();
+      if (!allPosts) {
+        return;
+      }
+      utils.post.all.setData(
+        undefined,
+        allPosts.map((t) => t.id === id ? {
+          ...t,
+          ...data,
+        } : t,
+        )
+      )
+    }
+  })
+
   const deletePost = trpc.post.delete.useMutation({
     async onMutate() {
       await utils.post.all.cancel();
@@ -52,13 +71,6 @@ export function Index() {
       ])
     }
   });
-
-
-
-  const postDeleteMutation = trpc.post.delete.useMutation();
-  const handleDeletePost = async (id: string) => {
-    postDeleteMutation.mutate(id)
-  }
 
   const { data: session } = trpc.auth.getSession.useQuery();
   const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery(
