@@ -1,8 +1,9 @@
-import { Box, Text, Flex, IconButton, useColorModeValue, useDisclosure, Stack, Button, Collapse, useBreakpointValue, Popover, PopoverTrigger, Link, PopoverContent, Icon } from "@chakra-ui/react";
-import { CloseIcon, HamburgerIcon, ChevronRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { Box, Text, Flex, IconButton, useColorModeValue, useDisclosure, Stack, Button, Collapse, useBreakpointValue, Popover, PopoverTrigger, Link, PopoverContent, Icon, useColorMode } from "@chakra-ui/react";
+import { CloseIcon, HamburgerIcon, ChevronRightIcon, ChevronDownIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
+  const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onToggle } = useDisclosure();
   const { data: session } = useSession()
 
@@ -50,6 +51,7 @@ export default function Navbar() {
           direction={'row'}
           spacing={6}
         >
+          <Button onClick={toggleColorMode}>{colorMode === 'light' ? <MoonIcon /> : <SunIcon />}</Button>
           <Button
             onClick={session ? () => signOut() : () => signIn()}
             fontSize={'sm'}
