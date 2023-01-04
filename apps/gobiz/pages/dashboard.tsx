@@ -1,6 +1,11 @@
+import { Box } from "@chakra-ui/react"
+import SidebarWithHeader from "../components/Sidebar"
+
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <SidebarWithHeader>
+      <Box>Dashboard</Box>
+    </SidebarWithHeader>
   )
 }
 
