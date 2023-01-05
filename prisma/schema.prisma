@@ -27,7 +27,6 @@ model Account {
   scope                    String?
   id_token                 String?
   session_state            String?
-  
   user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
@@ -36,8 +35,8 @@ model Account {
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
-  expires      DateTime
   userId       String
+  expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -49,6 +48,7 @@ model User {
   image         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  role          String?   @default("USER")
   accounts      Account[]
   sessions      Session[]
 }

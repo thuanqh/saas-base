@@ -6,27 +6,37 @@
   "targets": {
     "build": {
       "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/libs/api",
         "main": "libs/api/src/index.ts",
         "tsConfig": "libs/api/tsconfig.lib.json",
-        "assets": ["libs/api/*.md"]
+        "assets": [
+          "libs/api/*.md"
+        ]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/api/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/api/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/vite:test",
-      "outputs": ["{projectRoot}/coverage"],
+      "outputs": [
+        "coverage/libs/api"
+      ],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "{workspaceRoot}/coverage/{projectRoot}"
+        "reportsDirectory": "../../coverage/libs/api"
       }
     }
   },

@@ -6,27 +6,37 @@
   "targets": {
     "build": {
       "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/libs/auth",
         "main": "libs/auth/src/index.ts",
         "tsConfig": "libs/auth/tsconfig.lib.json",
-        "assets": ["libs/auth/*.md"]
+        "assets": [
+          "libs/auth/*.md"
+        ]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/auth/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/auth/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/vite:test",
-      "outputs": ["{projectRoot}/coverage"],
+      "outputs": [
+        "coverage/libs/auth"
+      ],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "{workspaceRoot}/coverage/{projectRoot}"
+        "reportsDirectory": "../../coverage/libs/auth"
       }
     }
   },
