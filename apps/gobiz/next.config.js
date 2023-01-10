@@ -7,8 +7,10 @@ const { withNx } = require('@nrwl/next/plugins/with-nx');
  * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  transpilePackages: ['@lungvang/api', '@lungvang/auth', '@lungvang/db'],
   experimental: {
-    transpilePackages: ['@lungvang/api', '@lungvang/auth', '@lungvang/db'],
   },
   nx: {
     // Set this to true if you would like to to use SVGR

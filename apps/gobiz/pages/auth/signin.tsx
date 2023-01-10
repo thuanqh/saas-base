@@ -49,11 +49,11 @@ export default function Signin({ providers, csrfToken }: Props) {
           boxShadow={'lg'}
           p={8}
         >
-          <Stack>
+          <Stack spacing={4}>
             <form onSubmit={handleSubmit(onSubmit)}>
               <FormControl isRequired isInvalid={Boolean(errors.email)}>
                 <FormLabel htmlFor="email">Email address</FormLabel>
-                <Input id="email" placeholder="email" type="email"
+                <Input id="email" placeholder="your-email@example.com" type="email"
                   {...register('email')}
                 />
                 {errors?.email ? (
@@ -64,7 +64,7 @@ export default function Signin({ providers, csrfToken }: Props) {
                   <FormHelperText>We&apos;ll never share your email.</FormHelperText>
                 )}
               </FormControl>
-              <Stack spacing={10}>
+              <Stack spacing={10} pt={2}>
                 <Button
                   bg={'green.400'}
                   color={'white'}

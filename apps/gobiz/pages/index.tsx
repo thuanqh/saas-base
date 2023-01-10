@@ -68,6 +68,9 @@ export function Index() {
           content,
         }
       ])
+    },
+    onSettled() {
+      utils.post.all.invalidate()
     }
   });
 
@@ -91,7 +94,18 @@ export function Index() {
           spacing={{ base: 8, md: 14 }}
           py={{ base: 20, md: 36 }}
         >
-          <Button onClick={() => addPost.mutate({ title: "Post A", content: "Post A Detail" })}>Create Post</Button>
+          {addPost.isLoading ? (
+            'Adding post...'
+          ) : (
+            <>
+              {addPost.isError ? (
+                <Text>An error occurred: {addPost.error?.message}</Text>
+              ) : null}
+
+              {addPost.isSuccess ? <Text>Post added!</Text> : null}
+              <Button onClick={() => addPost.mutate({ title: "Post A", content: "Post A Detail" })}>Create Post</Button>
+            </>
+          )}
           <Box>
             {allPosts.data ? (
               <Box>
