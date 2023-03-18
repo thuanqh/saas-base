@@ -29,7 +29,7 @@ export default function Signin({ providers, csrfToken }: Props) {
 
   const onSubmit = (data: FormValue) => {
     const { email } = formSchema.parse(data)
-    signIn("email", { email: email, callbackUrl: `${window.location.origin}` })
+    signIn("email", { email: email, callbackUrl: `${window.location.origin}/dashboard` })
   }
 
   return (
@@ -78,7 +78,7 @@ export default function Signin({ providers, csrfToken }: Props) {
             <Divider />
             <Stack spacing={10}>
               <Button onClick={() => signIn('github', {
-                callbackUrl: `${window.location.origin}`,
+                callbackUrl: `${window.location.origin}/dashboard`,
               })}>
                 Sign in with Github
               </Button>

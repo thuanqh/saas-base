@@ -8,17 +8,4 @@ export const authRouter = router({
   getSecretMessage: protectedProcedure.query(() => {
     return 'you can see this secret message';
   }),
-  hello: publicProcedure
-    .input(
-      z
-        .object({
-          text: z.string(),
-        })
-        .optional()
-    )
-    .query(({ input }) => {
-      return {
-        greeting: `hello ${input?.text ?? 'world'}`,
-      };
-    }),
 });

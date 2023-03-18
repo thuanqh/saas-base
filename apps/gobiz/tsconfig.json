@@ -20,7 +20,8 @@
     "**/*.js",
     "**/*.jsx",
     "next-env.d.ts",
-    "../../libs/auth/src/next-auth.d.ts"
+    "../../libs/auth/src/next-auth.d.ts",
+    "types/*.d.ts"
   ],
   "exclude": [
     "node_modules",

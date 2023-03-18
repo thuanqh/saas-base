@@ -6,7 +6,6 @@ interface VerifyPageProps {
 }
 
 export default function Verify(props: VerifyPageProps) {
-  const { url } = props
 
   return (
     <Box textAlign="center" py={10} px={6}>
