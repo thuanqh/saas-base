@@ -5,35 +5,25 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/db",
         "main": "libs/db/src/index.ts",
         "tsConfig": "libs/db/tsconfig.lib.json",
-        "assets": [
-          "libs/db/*.md"
-        ]
+        "assets": ["libs/db/*.md"]
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/db/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/db/**/*.ts"]
       }
     },
     "test": {
-      "executor": "@nrwl/vite:test",
-      "outputs": [
-        "coverage/libs/db"
-      ],
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/libs/db"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/libs/db"

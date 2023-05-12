@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "next";
-import { createProxySSGHelpers } from "@trpc/react-query/ssg";
+import { createServerSideHelpers } from "@trpc/react-query/server";
 import { inferProcedureOutput } from "@trpc/server";
 import { appRouter, AppRouter, CreateContextInner } from "@lungvang/api";
 import superjson from "superjson";
@@ -213,7 +213,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps = async (context: GetStaticPropsContext<{ filter: string }>) => {
-  const ssg = createProxySSGHelpers({
+  const ssg = createServerSideHelpers({
     router: appRouter,
     transformer: superjson,
     ctx: await CreateContextInner(),
