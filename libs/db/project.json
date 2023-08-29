@@ -11,7 +11,8 @@
         "outputPath": "dist/libs/db",
         "main": "libs/db/src/index.ts",
         "tsConfig": "libs/db/tsconfig.lib.json",
-        "assets": ["libs/db/*.md"]
+        "assets": ["libs/db/*.md"],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "lint": {
@@ -23,7 +24,7 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/libs/db"],
+      "outputs": ["{workspaceRoot}/coverage/libs/db"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/libs/db"

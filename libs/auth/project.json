@@ -11,7 +11,8 @@
         "outputPath": "dist/libs/auth",
         "main": "libs/auth/src/index.ts",
         "tsConfig": "libs/auth/tsconfig.lib.json",
-        "assets": ["libs/auth/*.md"]
+        "assets": ["libs/auth/*.md"],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "lint": {
@@ -23,7 +24,7 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/libs/auth"],
+      "outputs": ["{workspaceRoot}/coverage/libs/auth"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/libs/auth"
